@@ -36,7 +36,7 @@ freeVars (App exp1 exp2) = (freeVars exp1) `union` (freeVars exp2)
 -- []
 
 occursFree :: IndexedVar -> Exp -> Bool
-occursFree = undefined
+occursFree v exp = v `elem` (freeVars exp)
 
 -- >>> makeIndexedVar "x" `occursFree` Lam (makeIndexedVar "x") (X (makeIndexedVar "y"))
 -- False
