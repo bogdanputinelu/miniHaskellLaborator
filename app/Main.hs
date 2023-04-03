@@ -9,7 +9,7 @@ import Exp
 import Parsing
 import Printing
 import REPLCommand
-import Text.ParserCombinators.Parsec (parse)
+import Text.ParserCombinators.Parsec (parse)    
 
 main :: IO ()
 main = do
@@ -22,6 +22,6 @@ main = do
                         Load s -> putStrLn ("notImplemented") >> main
                         Eval l -> case parse exprParser "<input>" l of
                             Left err -> print err >> main
-                            Right c -> putStrLn (showExp c) >> main
+                            Right c -> (putStrLn . showExp . sugarExp . normalize . desugarExp $ c) >> main
 
 
